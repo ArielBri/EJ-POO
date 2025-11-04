@@ -1,4 +1,4 @@
-﻿namespace POO_1
+﻿namespace POO_1.Notifications
 {
     public class SmsNotification : Notification
     {
@@ -14,7 +14,7 @@
 
         public override void Send()
         {
-            Console.WriteLine("📱 Sending SMS to " + recipient);
+            Console.WriteLine("   Sending SMS to " + recipient);
             Console.WriteLine("   Phone: " + phoneNumber);
             Console.WriteLine("   Message: " + message);
             Console.WriteLine();

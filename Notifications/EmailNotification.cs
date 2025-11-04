@@ -1,4 +1,4 @@
-﻿namespace POO_1
+﻿namespace POO_1.Notifications
 {
     public class EmailNotification : Notification
     {
@@ -14,7 +14,7 @@
 
         public override void Send()
         {
-            Console.WriteLine("📧 Sending Email to " + recipient);
+            Console.WriteLine("   Sending Email to " + recipient);
             Console.WriteLine("   Subject: " + subject);
             Console.WriteLine("   Message: " + message);
             Console.WriteLine();

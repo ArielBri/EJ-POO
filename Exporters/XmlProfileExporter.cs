@@ -1,4 +1,6 @@
-﻿namespace POO_1
+﻿using POO_1.Interfaces;
+
+namespace POO_1.Exporters
 {
     public class XmlProfileExporter : IProfileExporter
     {

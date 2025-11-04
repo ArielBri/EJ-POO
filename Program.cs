@@ -1,28 +1,16 @@
-﻿/*ENUNCIADO ORIGINAL
- * 
-public class UserProfile
-{
-    public string Username;
-    public string Email;
-    public string Password; // ¡Muy inseguro!
-
-    public void DisplayProfile()
-    {
-        Console.WriteLine($"Username: {Username}");
-        Console.WriteLine($"Email: {Email}");
-    }
-
-    public void ExportToJSON()
-    {
-        // Lógica para exportar a JSON...
-        Console.WriteLine($"{{\"username\": \"{Username}\"}}");
-    }
-}
-*/
-
-using POO_1;
+﻿using POO_1;
+using POO_1.Attacks;
+using POO_1.Defenses;
+using POO_1.Exporters;
+using POO_1.Interfaces;
+using POO_1.Movements;
+using POO_1.Notifications;
 
 /*EJERCICIO 1*/
+
+Console.WriteLine("╔═══════════════╗");
+Console.WriteLine("║ EJERCICIO N°1 ║");
+Console.WriteLine("╚═══════════════╝");
 
 // Crear un perfil de usuario
 UserProfile user = new UserProfile(
@@ -47,6 +35,10 @@ Console.WriteLine();
 
 
 /*EJERCICIO 2*/
+
+Console.WriteLine("╔═══════════════╗");
+Console.WriteLine("║ EJERCICIO N°2 ║");
+Console.WriteLine("╚═══════════════╝");
 
 //CREANDO SERVICIO NOTIFICACIONES
 NotificationService service = new NotificationService();
@@ -89,15 +81,139 @@ notifications.Add(new SmsNotification(
 service.SendBatch(notifications);
 
 // Ejemplo adicional: enviar una notificación individual
-Console.WriteLine("\n\n--- Ejemplo de notificación individual ---\n");
+Console.WriteLine("--- Ejemplo de notificación individual ---");
 Notification urgentNotification = new PushNotification(
     "Admin",
     "¡ALERTA! Actividad sospechosa detectada",
     "device-ios-xyz789"
 );
 
-Console.WriteLine("\n--- Presiona cualquier tecla para salir ---");
+Console.WriteLine("--- Presiona cualquier tecla para continuar ---");
 Console.ReadKey();
 
 
 /*EJERCICIO 3*/
+
+Console.WriteLine(" ");
+Console.WriteLine("╔═══════════════╗");
+Console.WriteLine("║ EJERCICIO N°3 ║");
+Console.WriteLine("╚═══════════════╝");
+Console.WriteLine(" ");
+Console.WriteLine("╔══════════════════════════════════════════════════╗");
+Console.WriteLine("║  SISTEMA DE PERSONAJES - COMPOSICIÓN vs HERENCIA ║");
+Console.WriteLine("╚══════════════════════════════════════════════════╝");
+
+// 1. Guerrero Tradicional
+Character warrior = new Character(
+    "Aragorn el Guerrero",
+    new SwordAttack(),
+    new WalkingMovement(),
+    new ShieldDefense(),
+    120,
+    5
+);
+
+// 2. Mago
+Character mage = new Character(
+    "Gandalf el Mago",
+    new MagicAttack(),
+    new WalkingMovement(),
+    new MagicBarrierDefense(),
+    80,
+    7
+);
+
+// 3. Guerrero Volador (¡El problema original!)
+Character flyingWarrior = new Character(
+    "Valkyria la Guerrera Alada",
+    new SwordAttack(),
+    new FlyingMovement(),
+    new DodgeDefense(),
+    110,
+    6
+);
+
+// 4. Arquero Volador
+Character flyingArcher = new Character(
+    "Legolas el Arquero Aéreo",
+    new BowAttack(),
+    new FlyingMovement(),
+    new DodgeDefense(),
+    90,
+    5
+);
+
+// 5. Mago Guerrero (Spell-casting Warrior)
+Character spellblade = new Character(
+    "Arthas el Paladín Oscuro",
+    new MagicAttack(),
+    new WalkingMovement(),
+    new ShieldDefense(),
+    115,
+    8
+);
+
+// 6. Ninja Acuático
+Character waterNinja = new Character(
+    "Mizuki la Ninja del Agua",
+    new FistAttack(),
+    new SwimmingMovement(),
+    new DodgeDefense(),
+    95,
+    4
+);
+
+// 7. Hechicero Teletransportador
+Character teleportMage = new Character(
+    "Zephyr el Místico",
+    new MagicAttack(),
+    new TeleportMovement(),
+    new MagicBarrierDefense(),
+    75,
+    10
+);
+
+// Lista de todos los personajes
+List<Character> characters = new List<Character>
+        {
+            warrior, mage, flyingWarrior, flyingArcher,
+            spellblade, waterNinja, teleportMage
+        };
+
+// Demostrar cada personaje
+foreach (Character character in characters)
+{
+    character.DisplayInfo();
+    character.PerformCombatSequence();
+    Console.WriteLine();
+}
+
+// Demostrar cambio de comportamiento en tiempo de ejecución
+Console.WriteLine("╔════════════════════════════════════════════════╗");
+Console.WriteLine("║     CAMBIO DINÁMICO DE COMPORTAMIENTOS         ║");
+Console.WriteLine("╚════════════════════════════════════════════════╝");
+
+warrior.DisplayInfo();
+Console.WriteLine("Estado inicial:");
+warrior.PerformCombatSequence();
+
+Console.WriteLine("¡Aragorn encuentra un pergamino antiguo y aprende magia!");
+warrior.SetAttackBehavior(new MagicAttack());
+
+Console.WriteLine("¡Aragorn encuentra unas alas mágicas!");
+warrior.SetMovementBehavior(new FlyingMovement());
+
+Console.WriteLine("Nuevo estado:");
+warrior.PerformCombatSequence();
+
+Console.WriteLine("╔════════════════════════════════════════════════╗");
+Console.WriteLine("║              VENTAJAS DE COMPOSICIÓN           ║");
+Console.WriteLine("╚════════════════════════════════════════════════╝");
+Console.WriteLine("* Sin explosión de clases");
+Console.WriteLine("* Comportamientos intercambiables en tiempo de ejecución");
+Console.WriteLine("* Fácil agregar nuevos comportamientos");
+Console.WriteLine("* Combinaciones ilimitadas sin modificar código existente");
+Console.WriteLine("* Código más mantenible y flexible");
+
+Console.WriteLine("--- Presiona cualquier tecla para salir ---");
+Console.ReadKey();

@@ -1,4 +1,4 @@
-﻿namespace POO_1
+﻿namespace POO_1.Notifications
 {
     public abstract class Notification
     {
